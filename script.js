@@ -158,3 +158,11 @@ function drawPolygon(centerX, centerY, sides, radius, color = "#000000") {
 }
 
 
+// Parámetros para dibujar
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+const sides = randomEntre5y10();
+const radius = 100;
+
+// Llamada a tu función
+drawPolygon(centerX, centerY, sides, radius);
