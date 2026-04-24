@@ -124,8 +124,8 @@ function bresenhamLine(x0, y0, x1, y1, color) {
 function getPolygonVertices(centerX, centerY, sides, radius) {
     let vertices = [];
 
-    for (let i = 0; i < sides; i++) { // ✅ usar sides
-        let angulo = (2 * Math.PI * i) / sides; // ✅ usar sides
+    for (let i = 0; i < sides; i++) { 
+        let angulo = (2 * Math.PI * i) / sides; 
 
         let x = centerX + radius * Math.cos(angulo);
         let y = centerY + radius * Math.sin(angulo);
@@ -136,6 +136,25 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
     return vertices;
 }
 
+/**
+ * Dibuja un polígono regular usando Bresenham
+ * Obtiene los vértices del polígono y los recorre uno por uno
+ * Conecta cada punto con el siguiente usando Bresenham
+ */
+function drawPolygon(centerX, centerY, sides, radius, color = "#000000") {
+    let vertices = getPolygonVertices(centerX, centerY, sides, radius);
 
+    for (let i = 0; i < vertices.length; i++) {
+        let next = (i + 1) % vertices.length; // conecta el último con el primero
+
+        bresenhamLine(
+            vertices[i].x,
+            vertices[i].y,
+            vertices[next].x,
+            vertices[next].y,
+            color
+        );
+    }
+}
 
 
