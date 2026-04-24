@@ -18,7 +18,7 @@ function randomEntre5y10() {
 // Función de apoyo para dibujar un píxel individual
 function drawPixel(ctx, x, y, color = "#a200ff") {
     ctx.fillStyle = color;
-    ctx.fillRect(Math.floor(x), Math.floor(y), 1 , 1);
+    ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 }
 
 /**
@@ -124,8 +124,8 @@ function bresenhamLine(x0, y0, x1, y1, color) {
 function getPolygonVertices(centerX, centerY, sides, radius) {
     let vertices = [];
 
-    for (let i = 0; i < sides; i++) { 
-        let angulo = (2 * Math.PI * i) / sides; 
+    for (let i = 0; i < sides; i++) {
+        let angulo = (2 * Math.PI * i) / sides;
 
         let x = centerX + radius * Math.cos(angulo);
         let y = centerY + radius * Math.sin(angulo);
@@ -141,7 +141,7 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
  * Obtiene los vértices del polígono y los recorre uno por uno
  * Conecta cada punto con el siguiente usando Bresenham
  */
-function drawPolygon(centerX, centerY, sides, radius, color = "#000000") {
+function drawPolygon(centerX, centerY, sides, radius, color = "#e210f5") {
     let vertices = getPolygonVertices(centerX, centerY, sides, radius);
 
     for (let i = 0; i < vertices.length; i++) {
@@ -154,6 +154,11 @@ function drawPolygon(centerX, centerY, sides, radius, color = "#000000") {
             vertices[next].y,
             color
         );
+    }
+
+    // Dibujar circunferencia en cada vértice (R/4)
+    for (let i = 0; i < vertices.length; i++) {
+        drawCircle(vertices[i].x, vertices[i].y, radius / 4);
     }
 }
 
